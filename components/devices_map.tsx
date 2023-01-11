@@ -1,19 +1,15 @@
 import "leaflet/dist/leaflet.css";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import React from "react";
-import Link from "next/link";
 import {IDevice} from "../model/device";
+import DeviceInfo from "./device_info";
 
-interface IProps {
-    devices: IDevice[];
-}
-
-const DevicesMap = (props: IProps) => {
+const DevicesMap = (props: {devices: IDevice[]}) => {
     const renderMarker = (device: IDevice) => {
         const position = [device.location.latitude, device.location.longitude];
 
         return <Marker position={position} key={device.id}>
-            <Popup><Link href={`/devices/${device.id}`}>Device {device.id}</Link></Popup>
+            <Popup><DeviceInfo device={device}/></Popup>
         </Marker>
     }
 

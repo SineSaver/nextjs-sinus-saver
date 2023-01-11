@@ -1,6 +1,7 @@
 import React from "react";
 import get from "../../api/devices/get";
 import {IDevice} from "../../model/device";
+import DeviceInfo from "../../components/device_info";
 
 interface IProps {
     device: IDevice | null;
@@ -11,14 +12,7 @@ const DevicePage = (props: IProps) => {
         return <div>Device not found</div>;
     }
 
-    return (
-        <div>
-            <div>ID: {props.device.id}</div>
-            <div>IP: {props.device.ip}</div>
-            <div>Config: -</div>
-            <div>Location: Lon {props.device.location.longitude} Lat {props.device.location.latitude}</div>
-        </div>
-    );
+    return <DeviceInfo device={props.device} />;
 }
 
 export default DevicePage;

@@ -8,6 +8,7 @@ export interface IDevice {
         latitude: number;
         longitude: number;
     };
+    doorOpen: boolean;
 }
 
 export default class Device implements IDevice {
@@ -15,17 +16,20 @@ export default class Device implements IDevice {
     id: string;
     ip: string;
     location: { latitude: number; longitude: number };
+    doorOpen: boolean;
 
     private constructor(
         id: string,
         ip: string,
         config: Object,
-        location: { latitude: number; longitude: number }
+        location: { latitude: number; longitude: number },
+        doorOpen: boolean
     ) {
         this.id = id;
         this.ip = ip;
         this.config = config;
         this.location = location
+        this.doorOpen = doorOpen;
     }
 
     public static fromFirebaseDoc(doc: DocumentSnapshot): Device|null {
@@ -48,7 +52,8 @@ export default class Device implements IDevice {
             {
                 latitude: location.latitude,
                 longitude: location.longitude,
-            }
+            },
+            data.doorOpen ?? false,
         );
     }
 
@@ -57,7 +62,8 @@ export default class Device implements IDevice {
             id: this.id,
             ip: this.ip,
             config: this.config,
-            location: this.location
+            location: this.location,
+            doorOpen: this.doorOpen,
         }
     }
 }

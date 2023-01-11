@@ -4,6 +4,7 @@ export default [{
     id: 'sinussaver1',
     ip: '99.23.42.11',
     config: {},
+    doorOpen: false,
     location: {
         latitude: 49.01345303603201,
         longitude: 12.083036969415687,
@@ -11,6 +12,7 @@ export default [{
 }, {
     id: 'sinussaver2',
     ip: '99.23.42.11',
+    doorOpen: true,
     config: {},
     location: {
         latitude: 49.01851830978849,
@@ -19,6 +21,7 @@ export default [{
 }, {
     id: 'sinussaver3',
     ip: '99.23.42.11',
+    doorOpen: true,
     config: {},
     location: {
         latitude: 49.01627991207507,
@@ -27,6 +30,7 @@ export default [{
 }, {
     id: 'sinussaver4',
     ip: '99.23.42.11',
+    doorOpen: false,
     config: {},
     location: {
         latitude: 49.018601880728205,
