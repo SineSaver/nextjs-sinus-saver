@@ -4,14 +4,16 @@ import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import React from "react";
 import {IDevice} from "../model/device";
 import DeviceInfo from "./device_info";
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import {OpenStreetMapProvider} from 'leaflet-geosearch';
 import SearchControl from "./geo_search_control";
+import {LatLng} from "leaflet";
+import {SearchResult} from "leaflet-geosearch/lib/providers/provider";
 
-const DevicesMap = (props: {devices: IDevice[]}) => {
+const DevicesMap = (props: { devices: IDevice[] }) => {
     const provider = new OpenStreetMapProvider();
 
     const renderMarker = (device: IDevice) => {
-        const position = [device.location.latitude, device.location.longitude];
+        const position = new LatLng(device.location.latitude, device.location.longitude);
 
         return <Marker position={position} key={device.id}>
             <Popup><DeviceInfo device={device}/></Popup>
@@ -27,10 +29,7 @@ const DevicesMap = (props: {devices: IDevice[]}) => {
     return (
         <MapContainer center={[centerDeviceLocation.latitude, centerDeviceLocation.longitude]} zoom={15}
                       scrollWheelZoom={true}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
             <SearchControl
                 provider={provider}
                 showMarker={true}
@@ -41,7 +40,7 @@ const DevicesMap = (props: {devices: IDevice[]}) => {
                 autoClose={false}
                 searchLabel={"Addresse eingeben"}
                 keepResult={true}
-                popupFormat={({ query, result }) => result.label}
+                popupFormat={(value: {query: Object, result: SearchResult}) => value.result.label}
             />
             {props.devices.map((device) => renderMarker(device))}
         </MapContainer>
