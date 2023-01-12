@@ -15,7 +15,7 @@ interface IProps {
 
 const MapPage = (props: IProps) => {
     return (
-        <AdminLayout>
+        <AdminLayout devices={props.devices}>
             <DevicesMap devices={props.devices}/>
         </AdminLayout>
     );

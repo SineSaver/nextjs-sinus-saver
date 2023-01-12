@@ -10,16 +10,8 @@ interface IProps {
 
 export default function Home(props: IProps) {
     return (
-        <AdminLayout>
-            <div>
-                <ul>
-                    {props.devices.map(device => <li key={device.id}><Link
-                        href={`/devices/${device.id}`}>Device {device.id}</Link></li>)}
-                </ul>
-                <div>
-                    <Link href={`/map`}>Map</Link>
-                </div>
-            </div>
+        <AdminLayout devices={props.devices}>
+            Hallo :)
         </AdminLayout>
     )
 }
