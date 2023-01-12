@@ -2,7 +2,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import React from "react";
-import {IDevice} from "../model/device";
+import {IDevice} from "../../model/device";
 import DeviceInfo from "./device_info";
 import {OpenStreetMapProvider} from 'leaflet-geosearch';
 import SearchControl from "./geo_search_control";

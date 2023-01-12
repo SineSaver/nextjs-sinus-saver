@@ -1,6 +1,7 @@
 import React from "react";
 import all from "../api/devices/all";
 import {IDevice} from "../model/device";
+import {AdminLayout} from '../src/layout';
 import Link from "next/link";
 
 interface IProps {
@@ -9,15 +10,17 @@ interface IProps {
 
 export default function Home(props: IProps) {
     return (
-        <div>
-            <ul>
-                {props.devices.map(device => <li key={device.id}><Link
-                    href={`/devices/${device.id}`}>Device {device.id}</Link></li>)}
-            </ul>
+        <AdminLayout>
             <div>
-                <Link href={`/map`}>Map</Link>
+                <ul>
+                    {props.devices.map(device => <li key={device.id}><Link
+                        href={`/devices/${device.id}`}>Device {device.id}</Link></li>)}
+                </ul>
+                <div>
+                    <Link href={`/map`}>Map</Link>
+                </div>
             </div>
-        </div>
+        </AdminLayout>
     )
 }
 

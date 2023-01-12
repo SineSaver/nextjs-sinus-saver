@@ -3,8 +3,9 @@ import React from "react";
 import {IDevice} from "../../model/device";
 import all from "../../api/devices/all";
 import dynamic from "next/dynamic";
+import {AdminLayout} from "@layout";
 
-const DevicesMap = dynamic(() => import("../../components/devices_map"), {
+const DevicesMap = dynamic(() => import("../../src/components/devices_map"), {
     ssr: false
 });
 
@@ -14,7 +15,9 @@ interface IProps {
 
 const MapPage = (props: IProps) => {
     return (
-        <DevicesMap devices={props.devices}/>
+        <AdminLayout>
+            <DevicesMap devices={props.devices}/>
+        </AdminLayout>
     );
 }
 

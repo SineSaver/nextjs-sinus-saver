@@ -1,7 +1,8 @@
 import React from "react";
 import get from "../../api/devices/get";
 import {IDevice} from "../../model/device";
-import DeviceInfo from "../../components/device_info";
+import DeviceInfo from "../../src/components/device_info";
+import {AdminLayout} from "@layout";
 
 interface IProps {
     device: IDevice | null;
@@ -12,7 +13,11 @@ const DevicePage = (props: IProps) => {
         return <div>Device not found</div>;
     }
 
-    return <DeviceInfo device={props.device} />;
+    return (
+        <AdminLayout>
+            <DeviceInfo device={props.device} />;
+        </AdminLayout>
+    )
 }
 
 export default DevicePage;

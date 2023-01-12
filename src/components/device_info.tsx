@@ -1,4 +1,4 @@
-import {IDevice} from "../model/device";
+import {IDevice} from "../../model/device";
 import Link from "next/link";
 import React from "react";
 
