@@ -117,12 +117,15 @@ export default function SidebarNav(props: SidebarNavProps) {
                 Dashboard
                 <small className="ms-auto"><Badge bg="info" className="ms-auto">NEW</Badge></small>
             </SidebarNavItem>
-            <SidebarNavTitle>Übersicht</SidebarNavTitle>
-            <SidebarNavItem icon={faMap} href="/map">Map</SidebarNavItem>
-            <SidebarNavGroup toggleIcon={faHeartPulse} toggleText="Geräte">
-                {props.devices.map((device) => <SidebarNavItem key={device.id}
-                                                               href={`/devices/${device.id}`}>{device.id}</SidebarNavItem>)}
-            </SidebarNavGroup>
+            {props.devices && props.devices.length > 0 && <>
+                <SidebarNavTitle>Übersicht</SidebarNavTitle>
+                <SidebarNavItem icon={faMap} href="/map">Map</SidebarNavItem>
+                <SidebarNavGroup toggleIcon={faHeartPulse} toggleText="Geräte">
+                    {props.devices.map((device) => <SidebarNavItem key={device.id}
+                                                                   href={`/devices/${device.id}`}>{device.id}</SidebarNavItem>)}
+                </SidebarNavGroup>
+            </>
+            }
         </ul>
     )
 }

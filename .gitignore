@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#auth
+ils-login-firebase-adminsdk-halrg-b288ca9bce.json
