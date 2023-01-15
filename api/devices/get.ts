@@ -12,6 +12,7 @@ const get = async (id: string): Promise<IDevice | null> => {
 
         return device ? device.toJSON() : null;
     } catch (error) {
+        console.error(error);
         throw error;
     }
 }

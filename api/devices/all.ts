@@ -14,6 +14,7 @@ const all = async (): Promise<IDevice[]> => {
             .filter((device: Device|null): device is Device => !!device)
             .map(device => device.toJSON())
     } catch (error) {
+        console.error(error);
         throw error;
     }
 }

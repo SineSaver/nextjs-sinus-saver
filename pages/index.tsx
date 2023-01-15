@@ -21,6 +21,7 @@ export async function getServerSideProps(): Promise<{ props: IProps }> {
         const devices = await all();
         return {props: {devices}};
     } catch (error) {
+        console.error(error);
         throw error;
     }
 }
