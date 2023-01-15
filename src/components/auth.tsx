@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../utils/firebaseConfig";
-import { setCookie } from 'nookies';
+import {setCookie} from 'nookies';
+import Router from "next/router";
 
 const Auth = () => {
     const [email, setEmail] = useState('');
@@ -20,12 +21,14 @@ const Auth = () => {
     const handleSignIn = async (e: any) => {
         e.preventDefault();
         try {
-            const { user } = await signInWithEmailAndPassword(auth, email, password);
+            const {user} = await signInWithEmailAndPassword(auth, email, password);
             const idToken = await user.getIdToken();
             setCookie(null, 'firebase_id_token', idToken, {
                 maxAge: 30 * 24 * 60 * 60, // 30 days
                 path: '/',
             });
+
+            await Router.push('/');
         } catch (error: string | any) {
             setError(error.message);
         }
@@ -34,9 +37,9 @@ const Auth = () => {
     return (
         <div>
             <form>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/><br />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/><br/>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-                       placeholder="Password"/><br />
+                       placeholder="Password"/><br/>
                 <button type="submit" onClick={handleSignIn}>Einloggen</button>
             </form>
             {error && <p>Error: {error}</p>}
