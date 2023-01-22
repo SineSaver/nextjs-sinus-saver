@@ -3,6 +3,8 @@ import all from "../api/devices/all";
 import {IDevice} from "../model/device";
 import {AdminLayout} from '../src/layout';
 import 'firebase/auth';
+import {getApp} from "@firebase/app";
+import {useRouter} from "next/router";
 
 interface IProps {
     devices: IDevice[]

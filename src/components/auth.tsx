@@ -23,7 +23,7 @@ const Auth = () => {
         try {
             const {user} = await signInWithEmailAndPassword(auth, email, password);
             const idToken = await user.getIdToken();
-            setCookie(null, 'firebase_id_token', idToken, {
+            setCookie(null, '__session', idToken, {
                 maxAge: 30 * 24 * 60 * 60, // 30 days
                 path: '/',
             });

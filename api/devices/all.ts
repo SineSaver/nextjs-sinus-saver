@@ -23,10 +23,12 @@ const getAllDevices = async () => {
 const all = async (context: any): Promise<IDevice[]> => {
     try {
         const cookies = nookies.get(context);
-        await firebaseAdmin.auth().verifyIdToken(cookies.firebase_id_token);
+        console.log("Authentication attempt: " + cookies.__session);
+        await firebaseAdmin.auth().verifyIdToken(cookies.__session);
 
         return await getAllDevices();
     } catch (error) {
+        console.error("Authentication error: " + error);
         context.res.writeHead(302, {Location: '/login'});
         context.res.end();
 
